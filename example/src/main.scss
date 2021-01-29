@@ -1,0 +1,20 @@
+body {
+    font-size: 21px;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.app {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(231, 231, 231);
+    border: 1px solid rgb(221, 221, 221);
+    cursor: pointer;
+}
+.app_dark {
+    background: rgb(70, 70, 70);
+    color: white;
+}
