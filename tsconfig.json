@@ -1,0 +1,9 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "outDir": "lib",
+        "declaration": true,
+        "sourceMap": true,
+        "esModuleInterop": true
+    }
+}
