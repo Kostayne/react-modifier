@@ -2,8 +2,8 @@ import React, { ReactElement } from "react";
 import classNames from "classnames";
 
 export interface IModifiableProps<T> {
-    theme?: T;
-    mod: IModifier;
+    theme: T;
+    mod?: IModifier;
 }
 
 export interface IModifiableTheme {
@@ -23,17 +23,16 @@ export abstract class ModifiableComponent<T extends IModifiableTheme, P extends 
         this.theme = props.theme;
     }
 
-    abstract renderWithTheme(): ReactElement;
-    abstract renderWithoutTheme(): ReactElement;
+    abstract renderThemed(): ReactElement;
 
-    render() {
-        return this.props.theme? this.renderWithTheme() : this.renderWithoutTheme();
+    render(): ReactElement {
+        return modifyElement(this.renderThemed(), getHeadModifierByProps(this.props));
     }
 }
 
 export interface IModifier {
     className: string;
-    id?: string;
+    id: string;
 }
 
 export function createModifier(className: string, id=""): IModifier {
@@ -73,4 +72,8 @@ export function mixModifiers(...mods: IModifier[]): IModifier {
     }
 
     return { id, className };
+}
+
+export function getHeadModifierByProps<T extends IModifiableTheme>(props: IModifiableProps<T>): IModifier {
+    return props.mod? mixModifiers(props.mod, props.theme.head) : props.theme.head;
 }
