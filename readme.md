@@ -8,6 +8,10 @@ This package can:
 - Modify component head to position it
 - Modify whole component to apply a theme
 
+<center>
+    :octocat: <a href="https://github.com/Kostayne/react-modifier">See source code in github</a>
+</center>
+
 ## What's the problem?
 How many component's visual style can you modify without changing its code? The value is low I bet.
 
@@ -60,7 +64,7 @@ const App = (
 This package using second way.
 
 ## Install
-To download this package from npm paste this command in a terminal
+:package: To download this package from npm paste this command in a terminal
 ```
 npm install react-flex-components
 ```
