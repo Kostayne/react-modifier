@@ -3,6 +3,8 @@ IModifier changed. Now id is required. It's caused javascript nature. If you not
 
 IModifiableProps id and theme swapped. Theme is required and id is optional. Why? Cause it allows you to create one render method.
 
+In ModifiableComponent were removed renderWithTheme & renderWithoutTheme. Instead of them use ***renderThemed*** thats returns ***not*** modified component. Render method automticly modifies output from renderThemed call.
+
 ## :hammer: Features
 `getHeadModByProps` function added. It combines theme.head & mod. Or theme.head only.
 

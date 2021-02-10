@@ -94,29 +94,25 @@ export interface IFlexAppProps extends IModifiableProps<FlexAppTheme> {
 
 export const FlexAppF: FunctionComponent<IFlexAppProps> = (props: IFlexAppProps) => {
     const { text, theme, mod } = props;
-
-    if (theme) {
-        return modifyElement((
-            <div className="app">
-                {modifyElement((
-                    <span className="app__text">
-                        {text}
-                    </span>
-                ), theme.textMod)}
-            </div>
-        ), mixModifiers(mod, theme.head));
-    }
+    const headMod = getHeadModByProps(props);
 
     return modifyElement((
         <div className="app">
             {modifyElement((
-                <span className="app__text">{text}</span>
+                <span className="app__text">
+                    {text}
+                </span>
             ), theme.textMod)}
         </div>
-    ), mod);
+    ), headMod);
 }
 
 // theme instance
+const defaultTheme: FlexAppTheme = {
+    head: createModifier(""),
+    textMod: createModifier("")
+}
+
 const darkTheme: FlexAppTheme = {
     head: createModifier("app_dark"),
     textMod: createModifier("app__text_dark")
@@ -124,7 +120,8 @@ const darkTheme: FlexAppTheme = {
 
 // all themes
 export const flexAppThemes = {
-    dark: darkTheme
+    dark: darkTheme,
+    default: defaultTheme
 };
 ```
 
@@ -138,24 +135,14 @@ export class FlexApp extends IModifiableComponent<FlexAppTheme, IFlexAppProps> {
         super(props);
     }
 
-    renderWithTheme() {
-        return modifyElement((
-            <div className="app">
-                {modifyElement((
-                    <span className="app__text">
-                        {this.props.text}
-                    </span>
-                ), this.theme.textMod)}
-            </div>
-        ), mixModifiers(this.mod, this.theme.head));
-    }
-
-    renderWithoutTheme() {
-        return modifyElement((
-            <div className="app">
-                <span className="app__text">{this.props.text}</span>
-            </div>
-        ), this.mod);
+    renderThemed() {
+        <div className="app">
+            {modifyElement((
+                <span className="app__text">
+                    {this.props.text}
+                </span>
+            ), this.theme.textMod)}
+        </div>
     }
 }
 ```
@@ -182,7 +169,7 @@ Lets take a look how does it work
 ``` typescript
 interface IModifier {
     className: string;
-    id?: string;
+    id: string;
 
     // if you want to modify more props, extend that interface
 }
@@ -213,8 +200,8 @@ modifyElement(element: ReactElement, mod: IModifier): ReactElement;
 
 ``` typescript 
 interface IModifiableProps<T> {
-    theme?: T; // head && body modifiers
-    mod: IModifier; // component head modifier
+    theme: T; // head && body modifiers
+    mod?: IModifier; // component head modifier
 }
 
 // extend that interface to add other props
@@ -235,13 +222,7 @@ interface IModifiableTheme {
 ``` typescript
 // pass your own Theme & Props interface realization
 class IModifiableComponent<Theme: IModifiableTheme, Props: IModifiableProps> extends React.Component {
-    renderWithTheme() {
-        // your code
-    }
-
-    renderWithoutTheme() {
-        // your code
-    }
+    renderThemed(): ReactElement;
 }
 ```
 
