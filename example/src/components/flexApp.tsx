@@ -38,6 +38,12 @@ const darkTheme: FlexAppTheme = {
     textMod: Modifier.createModifier("app__text_dark")
 }
 
+const grayTheme: FlexAppTheme = {
+    head: Modifier.createModifier(""),
+    textMod: Modifier.createModifier("")
+}
+
 export const flexAppThemes = {
-    dark: darkTheme
+    dark: darkTheme,
+    gray: grayTheme
 };
