@@ -20,7 +20,7 @@
     "modify"
   ],
   "author": "kostayne (github)",
-  "license": "ISC",
+  "license": "GNU General Public License, version 2",
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
