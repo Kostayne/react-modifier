@@ -145,6 +145,9 @@ export class FlexApp extends IModifiableComponent<FlexAppTheme, IFlexAppProps> {
         </div>
     }
 }
+
+// also it's possible to pass third type or interface, that describes State
+// <FlexAppTheme, IFlexAppProps, IFlexAppState>
 ```
 
 Okay, now we can use new component.
