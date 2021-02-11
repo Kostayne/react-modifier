@@ -1,6 +1,6 @@
 {
   "name": "react-modifier",
-  "version": "2.1.2",
+  "version": "2.1.4",
   "description": "This package helps you to make customizable reuseble components",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

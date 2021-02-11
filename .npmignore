@@ -4,3 +4,4 @@ webpack.config.js
 tsconfig.json
 .babelrc
 .gitignore
+.eslintrc.json

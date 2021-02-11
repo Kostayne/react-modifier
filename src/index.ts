@@ -10,7 +10,7 @@ export interface IModifiableTheme {
     head: IModifier;
 }
 
-export abstract class ModifiableComponent<T extends IModifiableTheme, P extends IModifiableProps<T>> extends React.Component {
+export abstract class ModifiableComponent<T extends IModifiableTheme, P extends IModifiableProps<T>, S = {}> extends React.Component<P, S> {
     protected mod: IModifier;
     protected theme: T;
     public props: P;
