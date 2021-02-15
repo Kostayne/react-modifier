@@ -4,23 +4,23 @@ ReactModifier is a tool that can help you to customize app. Main idea - many the
 
 ![Logo](./logo.png)
 
-<center>
+<div style="text-align: center">
 
 ![npm](https://img.shields.io/npm/v/react-modifier?color=green) <!-- version -->
 ![npm](https://img.shields.io/bundlephobia/min/react-modifier?color=green) <!-- size -->
 ![npm](https://img.shields.io/npm/dm/react-modifier?color=green) <!-- downloads -->
 ![npm](https://img.shields.io/npm/l/react-modifier?color=green ) <!-- licence -->
 
-</center>
+</div>
 
 This package can:
 - Mix modifiers
 - Modify component head to position it
 - Modify whole component to apply a theme
 
-<center>
+<div style="text-align: center">
     :octocat: <a href="https://github.com/Kostayne/react-modifier">See source code in github</a>
-</center>
+</div>
 
 ## What's the problem?
 How many component's visual style can you modify without changing its code? The value is low I bet.
