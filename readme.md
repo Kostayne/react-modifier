@@ -1,7 +1,17 @@
 # React Modifier
+
 ReactModifier is a tool that can help you to customize app. Main idea - many themes, one component.
 
 ![Logo](./logo.png)
+
+<center>
+
+![npm](https://img.shields.io/npm/v/react-modifier?color=green) <!-- version -->
+![npm](https://img.shields.io/bundlephobia/min/react-modifier?color=green) <!-- size -->
+![npm](https://img.shields.io/npm/dm/react-modifier?color=green) <!-- downloads -->
+![npm](https://img.shields.io/npm/l/react-modifier?color=green ) <!-- licence -->
+
+</center>
 
 This package can:
 - Mix modifiers
