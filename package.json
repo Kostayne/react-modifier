@@ -1,6 +1,6 @@
 {
   "name": "react-modifier",
-  "version": "2.1.8",
+  "version": "2.2.8",
   "description": "This package helps you to make customizable reuseble components",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -53,7 +53,9 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@types/arr-diff": "^4.0.0",
     "@types/classnames": "^2.2.11",
+    "arr-diff": "^4.0.0",
     "classnames": "^2.2.6"
   }
 }

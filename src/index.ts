@@ -35,22 +35,30 @@ export interface IModifier {
     id: string;
 }
 
-export function createModifier(className: string, id=""): IModifier {
+export function createModifier(className: string, id: string = undefined): IModifier {
     return {
         className,
         id
     }
 }
 
-export function modifyElement(element: ReactElement, modifier: IModifier): ReactElement {
-    if (!modifier) return element;
+export function modifyElement(elem: ReactElement, mod: IModifier): ReactElement {
+    if (!mod) throw new Error("Modifier is null or undefined");
+    let resClass = classNames(elem.props.className || "", mod.className);
+    return React.cloneElement(elem, {className: resClass, id: mod.id});
+}
+
+export function modifyWithPrioritet(elem: ReactElement, mod: IModifier): ReactElement {
+    if (!mod) throw new Error("Modifier is null or undefined");
 
     let resClass = "";
-    if (element.props.className) {
-        resClass = classNames(element.props.className, modifier.className);
+    if (elem.props.className) {
+        const modClasses = mod.className.split(" ");
+        const elemClasses = elem.props.className.split(" ");
+        resClass = classNames(modClasses, elemClasses);
     }
 
-    return React.cloneElement(element, {className: resClass, id: modifier.id});
+    return React.cloneElement(elem, {className: resClass, id: mod.id});
 }
 
 export function mixModifiers(...mods: IModifier[]): IModifier {

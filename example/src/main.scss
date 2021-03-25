@@ -4,7 +4,7 @@ body {
     text-align: center;
 }
 
-.app {
+.btn {
     height: 50px;
     width: 150px;
     display: flex;
@@ -14,7 +14,17 @@ body {
     border: 1px solid rgb(221, 221, 221);
     cursor: pointer;
 }
-.app_dark {
+.btn_dark {
     background: rgb(70, 70, 70);
     color: white;
+}
+
+.elem {
+    width: 500px;
+    height: 500px;
+    background: gray;
+}
+
+.red {
+    background: red;
 }

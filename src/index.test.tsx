@@ -1,8 +1,12 @@
 import React from "react";
-import { createModifier, IModifiableTheme, IModifier, mixModifiers, modifyElement, getHeadModifierByProps, IModifiableProps } from "./index";
+import { createModifier, IModifiableTheme, IModifier, mixModifiers, modifyElement, getHeadModifierByProps, IModifiableProps, modifyWithPrioritet } from "./index";
 
-it("create modifiers", () => {
+it("create modifier with id", () => {
     expect(createModifier("class", "id")).toEqual({ className: "class", id: "id" });
+});
+
+it("create modifier without id", () => {
+    expect(createModifier("class")).toEqual({ className: "class", id: undefined });
 });
 
 it("mix modifiers", () => {
@@ -22,10 +26,20 @@ it("modify element", () => {
     );
 
     const moddedElem = modifyElement(elem, mod);
+    expect(moddedElem.props.className).toBe("modded");
+});
 
-    console.log(moddedElem.props);
+it("modify with prioritet", () => {
+    const mod: IModifier = { className: "modded", id: "" };
 
-    expect(true).toBe(true);
+    const elem = (
+        <div className="base">
+
+        </div>
+    );
+
+    const moddedElem = modifyWithPrioritet(elem, mod);
+    expect(moddedElem.props.className).toBe("modded base");
 });
 
 it("auto mixs head mod with theme", () => {

@@ -83,7 +83,7 @@ npm install react-flex-components
 First of all you have to import the library.
 
 ``` typescript
-import * as Modifier from "react-modifier";
+import * as MD from "react-modifier";
 // OR you can import individual functions and interfaces
 // import { IModifiableProps, IModifiableTheme, IModifier, createModifier, mixModifiers, modifyElement} from "react-modifier";
 ```
