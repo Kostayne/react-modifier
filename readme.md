@@ -76,7 +76,7 @@ This package using second way.
 ## Install
 :package: To download this package from npm paste this command in a terminal
 ```
-npm install react-flex-components
+npm install react-modifier
 ```
 
 ## How to use
