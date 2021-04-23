@@ -137,7 +137,7 @@ export const flexAppThemes = {
 
 ### Class component
 
-Just import IModifiableComponent class, that decides wich function result to return.
+Just import IModifiableComponent class.
 
 ``` typescript
 export class FlexApp extends IModifiableComponent<FlexAppTheme, IFlexAppProps> {
@@ -161,13 +161,13 @@ export class FlexApp extends IModifiableComponent<FlexAppTheme, IFlexAppProps> {
 ```
 
 Okay, now we can use new component.
-A Theme prop is optional, mod always required, but you always can pass zero mod: createMod("").
+A Theme prop is required, mod is optional, you always can define default theme in component.
 
 ``` typescript
 FlexAppF text="It actually works" mod={createModifier("root__app")} theme={flexAppThemes.dark}></FlexAppF>
 ```
 
-Result will be
+The result will be
 ``` html
     <div class="app root__app app_dark">
         <span class="app__text app__text_dark">It actually works</span>
@@ -175,7 +175,7 @@ Result will be
 ```
 
 ## Documentation
-Lets take a look how does it work
+Let's take a look how does it work
 
 >### Modifier is just an interface, that haves className and id properties;
 
@@ -184,7 +184,7 @@ interface IModifier {
     className: string;
     id: string;
 
-    // if you want to modify more props, extend that interface
+    // if you want to modify more props, extend this interface
 }
 ```
 
