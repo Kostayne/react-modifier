@@ -13,6 +13,12 @@ body {
     background: rgb(231, 231, 231);
     border: 1px solid rgb(221, 221, 221);
     cursor: pointer;
+
+    margin-top: 7px;
+
+    &:first {
+        margin-top: 0;
+    }
 }
 .btn_dark {
     background: rgb(70, 70, 70);
@@ -27,4 +33,14 @@ body {
 
 .red {
     background: red;
+}
+
+.box {
+    margin-top: 15px;
+}
+
+.green-box {
+    width: 150px;
+    height: 150px;
+    background: green;
 }

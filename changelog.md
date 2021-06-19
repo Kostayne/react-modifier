@@ -1,22 +1,14 @@
 ## Changes
-ModifiableComponent now can receive optional state type.
+createModifier now has all optional arguments.
+removedModifyWithPrioritet function
+improved work with id while modifying
+added more tests
 
 example: 
 ``` ts
-interface TestComponentState {
-    testField: string;
-    testFieldTwo: number;
-}
+import * as RM from "react-modifier";
 
-// if no state
-class TestComponent extends ModifiableComponent<TestComponentTheme, TestComponentProps> {
-    // realization
-}
-
-// if using state
-class TestComponent extends ModifiableComponent<TestComponentTheme, TestComponentProps, TestComponentState> {
-    // realization
-}
+const mod = RM.createModifier(); // { className: "", id: "" }
 ```
 
 :octocat: Sources in [github](https://github.com/Kostayne/react-modifier)

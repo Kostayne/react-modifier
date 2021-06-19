@@ -35,7 +35,7 @@ export interface IModifier {
     id: string;
 }
 
-export function createModifier(className: string, id: string = undefined): IModifier {
+export function createModifier(className: string="", id: string = ""): IModifier {
     return {
         className,
         id
@@ -43,22 +43,17 @@ export function createModifier(className: string, id: string = undefined): IModi
 }
 
 export function modifyElement(elem: ReactElement, mod: IModifier): ReactElement {
-    if (!mod) throw new Error("Modifier is null or undefined");
-    let resClass = classNames(elem.props.className || "", mod.className);
-    return React.cloneElement(elem, {className: resClass, id: mod.id});
-}
-
-export function modifyWithPrioritet(elem: ReactElement, mod: IModifier): ReactElement {
-    if (!mod) throw new Error("Modifier is null or undefined");
-
-    let resClass = "";
-    if (elem.props.className) {
-        const modClasses = mod.className.split(" ");
-        const elemClasses = elem.props.className.split(" ");
-        resClass = classNames(modClasses, elemClasses);
+    if (!mod) {
+        console.error("Modifier is null or undefined. The element wasn't modified!");
+        return elem;
     }
 
-    return React.cloneElement(elem, {className: resClass, id: mod.id});
+    if (!elem) {
+        throw "There is no element to modify!";
+    }
+
+    let resClass = classNames(elem.props.className || "", mod.className);
+    return React.cloneElement(elem, {className: resClass, id: mod.id || elem.props.id});
 }
 
 export function mixModifiers(...mods: IModifier[]): IModifier {

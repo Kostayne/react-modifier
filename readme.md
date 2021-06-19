@@ -83,7 +83,7 @@ npm install react-modifier
 First of all you have to import the library.
 
 ``` typescript
-import * as MD from "react-modifier";
+import * as RM from "react-modifier";
 // OR you can import individual functions and interfaces
 // import { IModifiableProps, IModifiableTheme, IModifier, createModifier, mixModifiers, modifyElement} from "react-modifier";
 ```
@@ -92,12 +92,11 @@ Then you can create customizable functional or class components
 
 ### Functional component example
 ``` typescript
-// define theme interface
+// define theme & props interfaces
 export interface FlexAppTheme extends IModifiableTheme {
     textMod: IModifier;
 };
 
-// define props interface
 export interface IFlexAppProps extends IModifiableProps<FlexAppTheme> {
     text: string;
 };
@@ -117,7 +116,7 @@ export const FlexAppF: FunctionComponent<IFlexAppProps> = (props: IFlexAppProps)
     ), headMod);
 }
 
-// theme instance
+// theme instances
 const defaultTheme: FlexAppTheme = {
     head: createModifier(""),
     textMod: createModifier("")
@@ -184,19 +183,20 @@ interface IModifier {
     className: string;
     id: string;
 
-    // if you want to modify more props, extend this interface
+    // if you want to modify more props, fork my github repo
 }
 ```
 
-> ### createModifier function wraps your args to new IFlexCompnentModifier obj
+> ### createModifier function wraps your args to new IModifier obj
 
 ``` typescript
-// createModifier(className, id?);
+// createModifier(className?, id?);
 createModifier("mod_class", "mod-el");
 createModifier("mod_class");
+createModifier();
 ```
 
-> ### mixModifier function combining all classNames to one and chooses id
+> ### mixModifier function combining all classNames to one and takes first id
 
 ``` typescript 
 mixModifiers(mod, mod2, mod3...) => IModifier;
@@ -215,6 +215,7 @@ modifyElement(element: ReactElement, mod: IModifier): ReactElement;
 interface IModifiableProps<T> {
     theme: T; // head && body modifiers
     mod?: IModifier; // component head modifier
+    inputMod: IModifier; // custom mod
 }
 
 // extend that interface to add other props
@@ -230,12 +231,15 @@ interface IModifiableTheme {
 // extend that interface to add other customizable parts
 ```
 
-> ### IModifiableComponent class choosing what to render by checking props.theme value
+> ### IModifiableComponent class has constructor with modifer props & renderThemedMethod
 
 ``` typescript
 // pass your own Theme & Props interface realization
-class IModifiableComponent<Theme: IModifiableTheme, Props: IModifiableProps> extends React.Component {
-    renderThemed(): ReactElement;
+class IModifiableComponent<Theme: IModifiableTheme, Props: IModifiableProps, State?> extends React.Component {
+    renderThemed(): ReactElement; 
+    
+    // Return elements here, but don't modify first element! 
+    // It's already doing render method. 
 }
 ```
 
