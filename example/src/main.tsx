@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createModifier, modifyElement } from "../../src";
+import { createMod, modElement } from "../../src";
 import { Btn, BtnThemes } from "./components/btn";
 import "./main.scss";
 
 const appRoot = document.getElementById("app-root");
 
-const redMod = createModifier("red");
-const greenBoxMod = createModifier("green-box");
+const redMod = createMod("red");
+const greenBoxMod = createMod("green-box");
 
 const App = () => {
     return (
@@ -20,7 +20,7 @@ const App = () => {
             <Btn theme={BtnThemes.dark} mod={redMod} text="button red" />
 
             {/* modify single elem */}
-            {modifyElement((
+            {modElement((
                 <div className="box">
 
                 </div>

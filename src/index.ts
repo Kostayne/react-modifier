@@ -26,7 +26,7 @@ export abstract class ModifiableComponent<T extends IModifiableTheme, P extends 
     abstract renderThemed(): ReactElement;
 
     render(): ReactElement {
-        return modifyElement(this.renderThemed(), getHeadModifierByProps(this.props));
+        return modElement(this.renderThemed(), getHeadModByProps(this.props));
     }
 }
 
@@ -35,14 +35,14 @@ export interface IModifier {
     id: string;
 }
 
-export function createModifier(className: string="", id: string = ""): IModifier {
+export function createMod(className: string="", id: string = ""): IModifier {
     return {
         className,
         id
     }
 }
 
-export function modifyElement(elem: ReactElement, mod: IModifier): ReactElement {
+export function modElement(elem: ReactElement, mod: IModifier): ReactElement {
     if (!mod) {
         console.error("Modifier is null or undefined. The element wasn't modified!");
         return elem;
@@ -56,7 +56,7 @@ export function modifyElement(elem: ReactElement, mod: IModifier): ReactElement 
     return React.cloneElement(elem, {className: resClass, id: mod.id || elem.props.id});
 }
 
-export function mixModifiers(...mods: IModifier[]): IModifier {
+export function mixMods(...mods: IModifier[]): IModifier {
     let className = "";
     let id = "";
 
@@ -77,6 +77,6 @@ export function mixModifiers(...mods: IModifier[]): IModifier {
     return { id, className };
 }
 
-export function getHeadModifierByProps<T extends IModifiableTheme>(props: IModifiableProps<T>): IModifier {
-    return props.mod? mixModifiers(props.mod, props.theme.head) : props.theme.head;
+export function getHeadModByProps<T extends IModifiableTheme>(props: IModifiableProps<T>): IModifier {
+    return props.mod? mixMods(props.mod, props.theme.head) : props.theme.head;
 }

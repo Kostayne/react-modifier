@@ -85,7 +85,7 @@ First of all you have to import the library.
 ``` typescript
 import * as RM from "react-modifier";
 // OR you can import individual functions and interfaces
-// import { IModifiableProps, IModifiableTheme, IModifier, createModifier, mixModifiers, modifyElement} from "react-modifier";
+// import { IModifiableProps, IModifiableTheme, IModifier, createMod, mixMod, modElement} from "react-modifier";
 ```
 
 Then you can create customizable functional or class components
@@ -105,9 +105,9 @@ export const FlexAppF: FunctionComponent<IFlexAppProps> = (props: IFlexAppProps)
     const { text, theme, mod } = props;
     const headMod = getHeadModByProps(props);
 
-    return modifyElement((
+    return modElement((
         <div className="app">
-            {modifyElement((
+            {modElement((
                 <span className="app__text">
                     {text}
                 </span>
@@ -118,13 +118,13 @@ export const FlexAppF: FunctionComponent<IFlexAppProps> = (props: IFlexAppProps)
 
 // theme instances
 const defaultTheme: FlexAppTheme = {
-    head: createModifier(""),
-    textMod: createModifier("")
+    head: createMod(""),
+    textMod: createMod("")
 }
 
 const darkTheme: FlexAppTheme = {
-    head: createModifier("app_dark"),
-    textMod: createModifier("app__text_dark")
+    head: createMod("app_dark"),
+    textMod: createMod("app__text_dark")
 }
 
 // all themes
@@ -146,7 +146,7 @@ export class FlexApp extends IModifiableComponent<FlexAppTheme, IFlexAppProps> {
 
     renderThemed() {
         <div className="app">
-            {modifyElement((
+            {modElement((
                 <span className="app__text">
                     {this.props.text}
                 </span>
@@ -163,7 +163,7 @@ Okay, now we can use new component.
 A Theme prop is required, mod is optional, you always can define default theme in component.
 
 ``` typescript
-FlexAppF text="It actually works" mod={createModifier("root__app")} theme={flexAppThemes.dark}></FlexAppF>
+FlexAppF text="It actually works" mod={createMod("root__app")} theme={flexAppThemes.dark}></FlexAppF>
 ```
 
 The result will be
@@ -187,13 +187,13 @@ interface IModifier {
 }
 ```
 
-> ### createModifier function wraps your args to new IModifier obj
+> ### createMod function wraps your args to new IModifier obj
 
 ``` typescript
-// createModifier(className?, id?);
-createModifier("mod_class", "mod-el");
-createModifier("mod_class");
-createModifier();
+// createMod(className?, id?);
+createMod("mod_class", "mod-el");
+createMod("mod_class");
+createMod();
 ```
 
 > ### mixModifier function combining all classNames to one and takes first id
@@ -202,11 +202,11 @@ createModifier();
 mixModifiers(mod, mod2, mod3...) => IModifier;
 ```
 
-> ### modifyElement function applies mod on provided element and
+> ### modElement function applies mod on provided element and
 returns modified version
 
 ``` typescript
-modifyElement(element: ReactElement, mod: IModifier): ReactElement;
+modElement(element: ReactElement, mod: IModifier): ReactElement;
 ```
 
 > ### IModifiableProps is an interface that haves theme and head mod

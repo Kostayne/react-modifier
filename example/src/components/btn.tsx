@@ -12,25 +12,25 @@ export interface IBtnProps extends Modifier.IModifiableProps<BtnTheme> {
 export const Btn: FunctionComponent<IBtnProps> = (props: IBtnProps) => {
     const { text, theme, mod } = props;
 
-    return Modifier.modifyElement((
+    return Modifier.modElement((
         <div className="btn">
-            {Modifier.modifyElement((
+            {Modifier.modElement((
                 <span className="btn__text">
                     {text}
                 </span>
             ), theme.textMod)}
         </div>
-    ), Modifier.getHeadModifierByProps(props));
+    ), Modifier.getHeadModByProps(props));
 }
 
 const darkTheme: BtnTheme = {
-    head: Modifier.createModifier("btn_dark"),
-    textMod: Modifier.createModifier("btn__text_dark")
+    head: Modifier.createMod("btn_dark"),
+    textMod: Modifier.createMod("btn__text_dark")
 }
 
 const grayTheme: BtnTheme = {
-    head: Modifier.createModifier(""),
-    textMod: Modifier.createModifier("")
+    head: Modifier.createMod(""),
+    textMod: Modifier.createMod("")
 }
 
 export const BtnThemes = {

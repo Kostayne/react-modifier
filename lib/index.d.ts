@@ -18,7 +18,7 @@ export interface IModifier {
     className: string;
     id: string;
 }
-export declare function createModifier(className?: string, id?: string): IModifier;
-export declare function modifyElement(elem: ReactElement, mod: IModifier): ReactElement;
-export declare function mixModifiers(...mods: IModifier[]): IModifier;
-export declare function getHeadModifierByProps<T extends IModifiableTheme>(props: IModifiableProps<T>): IModifier;
+export declare function createMod(className?: string, id?: string): IModifier;
+export declare function modElement(elem: ReactElement, mod: IModifier): ReactElement;
+export declare function mixMods(...mods: IModifier[]): IModifier;
+export declare function getHeadModByProps<T extends IModifiableTheme>(props: IModifiableProps<T>): IModifier;

@@ -1,19 +1,61 @@
 import React from "react";
-import { createModifier, IModifiableTheme, IModifier, mixModifiers, modifyElement, getHeadModifierByProps, IModifiableProps } from "./index";
+import { createMod, IModifiableTheme, IModifier, mixMods, modElement, getHeadModByProps, IModifiableProps, ModifiableComponent } from "./index";
+
+class testModC extends ModifiableComponent<IModifiableTheme, IModifiableProps<IModifiableTheme>> {
+    renderThemed() {
+        return (
+            <div>
+
+            </div>
+        );
+    }
+}
+
+it("not changing passed args", () => {
+    const headMod= createMod();
+    const t = {
+        head: headMod
+    }
+
+    const props = {
+        theme: t
+    }
+
+    const modC: any = new testModC(props);
+    
+    expect(modC.theme).toEqual(t);
+    expect(modC.mod).toEqual(undefined);
+    expect(modC.props).toEqual(props);
+});
+
+it("renders class component as well", () => {
+    const headMod= createMod("head-mod");
+    const t = {
+        head: headMod
+    }
+
+    const props = {
+        theme: t
+    }
+
+    const modC = new testModC(props);
+
+    expect(modC.render()).not.toEqual(undefined);
+});
 
 it("create modifier with id", () => {
-    expect(createModifier("class", "id")).toEqual({ className: "class", id: "id" });
+    expect(createMod("class", "id")).toEqual({ className: "class", id: "id" });
 });
 
 it("create modifier without id", () => {
-    expect(createModifier("class")).toEqual({ className: "class", id: "" });
+    expect(createMod("class")).toEqual({ className: "class", id: "" });
 });
 
 it("mix modifiers", () => {
     const modOne: IModifier = { className: "one", id: "" };
     const modTwo: IModifier = { className: "two", id: "two" };
 
-    expect(mixModifiers(modOne, modTwo)).toEqual({ className: "one two", id: "two" });
+    expect(mixMods(modOne, modTwo)).toEqual({ className: "one two", id: "two" });
 });
 
 it("modify element class", () => {
@@ -25,7 +67,7 @@ it("modify element class", () => {
         </div>
     );
 
-    const moddedElem = modifyElement(elem, mod);
+    const moddedElem = modElement(elem, mod);
     expect(moddedElem.props.className).toBe("modded");
 });
 
@@ -38,12 +80,12 @@ it("modify element id", () => {
         </div>
     );
 
-    const moddedElem = modifyElement(elem, mod);
+    const moddedElem = modElement(elem, mod);
     expect(moddedElem.props.id).toBe("new_id");
 });
 
 it("throws execption, if there is no elem to modify", () => {
-    const f = () => { modifyElement(null, createModifier()) };
+    const f = () => { modElement(null, createMod()) };
     expect(f).toThrow();
 });
 
@@ -52,15 +94,36 @@ it("auto mixs head mod with theme", () => {
     const theme: IModifiableTheme = { head: { className: "head", id: "" } };
     const props: IModifiableProps<IModifiableTheme> = { theme, mod };
 
-    const resultMod = getHeadModifierByProps(props);
+    const resultMod = getHeadModByProps(props);
     expect(resultMod.className).toEqual("mod head");
 });
 
 it("overrides id when modifying mixed two mods", () => {
-    const mod: IModifier = createModifier("", "");
-    const modTwo: IModifier =  createModifier("", "new_id");
+    const mod: IModifier = createMod("", "");
+    const modTwo: IModifier =  createMod("", "new_id");
 
     const elem = <div id="old_id" />;
-    const modded = modifyElement(elem, mixModifiers(mod, modTwo));
+    const modded = modElement(elem, mixMods(mod, modTwo));
     expect(modded.props.id).toBe("new_id");
+});
+
+it("just returning element if there is no mod provided", () => {
+    const el = (
+        <div>
+
+        </div>
+    );
+
+    const res = modElement(el, null);
+
+    expect(res).not.toEqual(undefined);
+});
+
+it("throws exception when mixing mods without mods", () => {
+    expect(() => mixMods()).toThrow();
+});
+
+it("returns mod in mix mod if only one provided", () => {
+    const m = createMod();
+    expect(mixMods(m)).toEqual(m);
 });
