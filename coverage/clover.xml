@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1625377768264" clover="3.2.0">
-  <project timestamp="1625377768264" name="All files">
+<coverage generated="1636484618619" clover="3.2.0">
+  <project timestamp="1636484618619" name="All files">
     <metrics statements="25" coveredstatements="25" conditionals="22" coveredconditionals="22" methods="6" coveredmethods="6" elements="53" coveredelements="53" complexity="0" loc="25" ncloc="25" packages="1" files="1" classes="1"/>
-    <file name="index.ts" path="C:\Users\fucko\Desktop\projects\react-modifier\src\index.ts">
+    <file name="index.ts" path="/home/kostayne/Desktop/projects/react-modifier/src/index.ts">
       <metrics statements="25" coveredstatements="25" conditionals="22" coveredconditionals="22" methods="6" coveredmethods="6"/>
       <line num="19" count="2" type="stmt"/>
       <line num="21" count="2" type="stmt"/>
@@ -23,12 +23,12 @@
       <line num="64" count="4" type="cond" truecount="2" falsecount="0"/>
       <line num="66" count="3" type="stmt"/>
       <line num="67" count="6" type="stmt"/>
-      <line num="68" count="6" type="cond" truecount="2" falsecount="0"/>
-      <line num="69" count="4" type="stmt"/>
-      <line num="72" count="6" type="cond" truecount="4" falsecount="0"/>
-      <line num="73" count="2" type="stmt"/>
-      <line num="77" count="3" type="stmt"/>
-      <line num="81" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="70" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="71" count="4" type="stmt"/>
+      <line num="75" count="6" type="cond" truecount="4" falsecount="0"/>
+      <line num="76" count="2" type="stmt"/>
+      <line num="80" count="3" type="stmt"/>
+      <line num="84" count="2" type="cond" truecount="2" falsecount="0"/>
     </file>
   </project>
 </coverage>

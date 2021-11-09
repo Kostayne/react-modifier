@@ -84,7 +84,7 @@ it("modify element id", () => {
     expect(moddedElem.props.id).toBe("new_id");
 });
 
-it("throws execption, if there is no elem to modify", () => {
+it("throws exception, if there is no elem to modify", () => {
     const f = () => { modElement(null, createMod()) };
     expect(f).toThrow();
 });
@@ -107,7 +107,7 @@ it("overrides id when modifying mixed two mods", () => {
     expect(modded.props.id).toBe("new_id");
 });
 
-it("just returning element if there is no mod provided", () => {
+it("just returning provided element if mod is null or undefined", () => {
     const el = (
         <div>
 

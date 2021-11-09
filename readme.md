@@ -43,7 +43,7 @@ const App = (
 );
 ```
 
-Can't add theme or change position. Obviously you can't reuse that component. Cause if you're going to position it, you position it **everywhere**.
+Can't add theme or change position for inner elements. Obviously you can't reuse that component. If you're going to position it editing original component, you position it **everywhere**.
 
 Can we solve the problem? Actually we can. There is 2 ways:
 1. Create wrapper with class, that modifies nested elements
@@ -63,6 +63,7 @@ const App = (
 
 // second method
 const mod = { className: "app__testc" };
+
 const App = (
     {/* all good */} 
     <div classname="app">
@@ -159,8 +160,8 @@ export class FlexApp extends IModifiableComponent<FlexAppTheme, IFlexAppProps> {
 // <FlexAppTheme, IFlexAppProps, IFlexAppState>
 ```
 
-Okay, now we can use new component.
-A Theme prop is required, mod is optional, you always can define default theme in component.
+Okay, now we can use the new component.
+A Theme prop is required, but mod is optional, you always can define default theme in component to reuse it.
 
 ``` typescript
 FlexAppF text="It actually works" mod={createMod("root__app")} theme={flexAppThemes.dark}></FlexAppF>
@@ -243,4 +244,4 @@ class IModifiableComponent<Theme: IModifiableTheme, Props: IModifiableProps, Sta
 }
 ```
 
-## Enjoy this package
+Enjoy this package

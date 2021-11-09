@@ -65,10 +65,13 @@ export function mixMods(...mods: IModifier[]): IModifier {
 
     for (let i = 0; i < mods.length; i++) {
         const curr = mods[i];
+
+        // joining new className
         if (curr.className) {
             className = classNames(className, curr.className);
         }
 
+        // setting id if it was not set before
         if (curr.id && !id) {
             id = curr.id;
         }
